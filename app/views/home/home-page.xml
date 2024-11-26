@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Digital Tipping Platform" />
+    
+    <GridLayout rows="*, auto">
+        <ScrollView row="0">
+            <StackLayout class="p-4">
+                <!-- Hero Section -->
+                <StackLayout class="hero-section p-6 mb-4">
+                    <Label text="Tip with Ease" class="text-3xl font-bold text-center text-blue-600"/>
+                    <Label text="The future of digital tipping is here" class="text-lg text-center text-gray-600 mt-2"/>
+                    <Image src="~/images/hero-image.png" class="h-40 mt-4" stretch="aspectFit"/>
+                </StackLayout>
+
+                <!-- Balance Card -->
+                <StackLayout class="card">
+                    <Label text="Your Balance" class="text-lg font-bold"/>
+                    <Label text="{{ balance }}" class="text-2xl text-blue-500"/>
+                </StackLayout>
+
+                <!-- Quick Actions -->
+                <GridLayout columns="*, *" rows="auto" class="mt-4">
+                    <Button text="Send Tip" tap="{{ onSendTip }}" col="0" class="action-button"/>
+                    <Button text="Receive Tip" tap="{{ onReceiveTip }}" col="1" class="action-button"/>
+                </GridLayout>
+
+                <!-- User Testimonials -->
+                <Label text="What Users Say" class="text-xl font-bold mt-6 mb-2"/>
+                <ListView items="{{ testimonials }}" height="160" class="mt-2">
+                    <ListView.itemTemplate>
+                        <StackLayout class="testimonial-card">
+                            <Label text="{{ quote }}" class="text-gray-700 italic"/>
+                            <Label text="{{ name }}" class="font-bold mt-2"/>
+                            <Label text="{{ role }}" class="text-sm text-gray-500"/>
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+
+                <!-- FAQ Section -->
+                <Label text="Frequently Asked Questions" class="text-xl font-bold mt-6 mb-2"/>
+                <ListView items="{{ faqs }}" class="mt-2">
+                    <ListView.itemTemplate>
+                        <StackLayout class="faq-card" tap="{{ toggle }}">
+                            <Label text="{{ question }}" class="font-bold"/>
+                            <Label text="{{ answer }}" class="text-gray-600 mt-1" visibility="{{ isVisible ? 'visible' : 'collapsed' }}"/>
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+
+                <!-- Recent Transactions -->
+                <Label text="Recent Transactions" class="text-xl font-bold mt-6 mb-2"/>
+                <ListView items="{{ transactions }}" class="mt-2">
+                    <ListView.itemTemplate>
+                        <StackLayout class="card">
+                            <Label text="{{ type }}" class="font-bold"/>
+                            <Label text="{{ amount }}" class="text-blue-500"/>
+                            <Label text="{{ date }}" class="text-sm text-gray-500"/>
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Bottom Navigation -->
+        <GridLayout row="1" columns="*, *, *" class="bg-white border-t border-gray-200 p-2">
+            <Button text="Home" tap="{{ onHomeTab }}" col="0" class="text-blue-500"/>
+            <Button text="Scan QR" tap="{{ onScanQR }}" col="1" class="text-gray-500"/>
+            <Button text="Profile" tap="{{ onProfileTab }}" col="2" class="text-gray-500"/>
+        </GridLayout>
+    </GridLayout>
+</Page>
